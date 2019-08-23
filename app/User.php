@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'username', 'password', 'email', 'ip'
     ];
 
     /**
@@ -25,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password'
     ];
 
     /**
@@ -34,6 +34,29 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'username' => 'string',
+        'password' => 'string',
+        'email' => 'string',
+        'ip' => 'string',
+        'created_at' => 'timestamp',
+        'updated_at' => 'timestamp'
     ];
+
+    /**
+     * Get the Books for the User.
+     */
+    public function books()
+    {
+        return $this->hasMany(\App\Book::class);
+    }
+
+
+    /**
+     * Get the Countries for the User.
+     */
+    public function countries()
+    {
+        return $this->belongsToMany(\App\Country::class);
+    }
+
 }

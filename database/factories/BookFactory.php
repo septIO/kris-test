@@ -1,7 +1,7 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-use App\User;
+use App\Book;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 use Carbon\Carbon;
@@ -17,11 +17,9 @@ use Carbon\Carbon;
 |
 */
 
-$factory->define(User::class, function (Faker $faker) {
+$factory->define(Book::class, function (Faker $faker) {
     return [
-        'username' => $faker->sentence(),
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
-        'email' => $faker->unique()->safeEmail,
-        'ip' => $faker->sentence()
+        'title' => $faker->words(3, true),
+        'user_id' => random_int(1, 10)
     ];
 });
